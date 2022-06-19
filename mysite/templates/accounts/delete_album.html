@@ -1,0 +1,33 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h1>Delete Album</h1>
+<h3><a href="{% url 'user-page' %}">Back to Profile</a></h3>
+
+<br>
+
+{% load static %}
+<img src="{% static 'images/folder.png' %}" width="100px">
+
+<p>Click album name to delete</p>
+
+{% for album in albums %}
+    
+    <h1>
+        {% load static %}
+        <a href="{% url 'delete_album_confirm' album.id %}">{{ album.title }}</a></h1>
+
+    {% empty %}
+    {% load static %}
+    <img src="{% static 'images/LooksEmpty.gif' %}">
+    <br>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h1>Upload Image</h1>
+
+<!-- Foorumi alkaa johon täytetään tiedot -->
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.user }}
+
+
+    <br>
+    <div class="styled2">{{ form.image }}</div>
+    <br>
+
+    <p2>{{ form.album.label }}</p2>
+    <div class="styled">{{ form.album }}</div>
+
+
+    <p>{{ form.title.label }}<br> 
+    {{ form.title }}</p>
+
+    <p>{{ form.description.label }}<br> 
+    {{ form.description }}</p>
+
+    <p>{{ form.tags.label }}<br> 
+    {{ form.tags }}</p>
+    <i>Separate tags with commas</i>
+    <br>
+    <br>
+    <!-- Submit buttoni jolla rekisteröidytään sisään -->
+    <input type="submit" name="Submit" Value="Upload">
+</form>
+
+{% endblock %}

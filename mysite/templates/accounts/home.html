@@ -1,0 +1,22 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<div id="galleria">
+    <figure>
+    {% for photo in photos %}
+    <a href="{% url 'image_large' photo.id %}">
+        <img src="{{ photo.image_thumbnail_small.url }}">
+    </a>
+    {% endfor %}
+    </figure>
+</div>
+
+<br><br>
+
+{% endblock %}

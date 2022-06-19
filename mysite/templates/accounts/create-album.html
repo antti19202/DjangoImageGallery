@@ -1,0 +1,32 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h1>Create Album</h1>
+
+{% load static %}
+<img src="{% static 'images/folder.png' %}" width="100px">
+
+<!-- Foorumi alkaa johon täytetään tiedot -->
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.user }}
+    
+    <p>{{ form.title.label }}<br> 
+    {{ form.title }}</p>
+
+    <p>{{ form.description.label }}<br> 
+    {{ form.description }}</p>
+
+    <!-- Submit buttoni jolla rekisteröidytään sisään -->
+    <input type="submit" name="Submit" value="Create Album">
+</form>
+
+{% endblock %}

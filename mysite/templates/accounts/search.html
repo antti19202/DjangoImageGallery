@@ -1,0 +1,26 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+
+
+<h1>Search for keyword</h1>
+<form method="GET" action="" >
+    <input type="search" name="search" size="30"> <br><br>
+    <button type="submit"> Search </button>
+</form>
+
+<br>
+
+<h2>Most used tags:</h2>
+{% for tag in common_tags %}
+    <a href="{% url 'tagged' tag.slug %}">{{ tag }}</a>
+{% endfor %}
+<br><br>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}ERROR 404{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+{% load static %}
+<img src="{% static 'images/404.gif' %}">
+
+{% endblock %}

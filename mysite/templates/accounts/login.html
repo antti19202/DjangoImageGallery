@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+
+</head>
+<body>
+
+<div class="header">
+    <a href="{% url 'home' %}"><b>Home</b></a> &nbsp;
+    <a href="{% url 'register' %}"><b>Sign Up</b></a>
+</div>
+
+<div class="logo"></div>
+
+<div class="content">
+    <h1>Login</h1>
+
+    <!-- Foorumi alkaa johon täytetään tiedot -->
+    <form method="POST" action="">
+
+        {% csrf_token %}
+        
+        <!-- Käyttäjätunnun -->
+        <p>Username<br>
+        <input type="text" name="username" autofocus></p>
+
+        <!-- Salasana -->
+        
+        <p>Password<br>
+        <input type="password" name="password" onfocus="this.removeAttribute('readonly');" readonly /></p>
+
+        <br>
+        <!-- Submit buttoni jolla kirjaudutaan sisään -->
+        <input type="submit" value="Login">
+
+    </form>
+
+    <!-- Jos käyttäjätunnus tai salasana ovat väärin... error message -->
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+
+    <!-- Jos käyttäjällä ei ole tunnuksia, voi siirtyä niiden luontiin -->
+    <br><br><p>Don't have an account?</p><a href="{% url 'register' %}" class="ml-2"><h2>Sign Up</h2></a>
+
+</div>
+
+<footer class="footer">Team Karhukopla 2021</footer>
+
+
+</body>

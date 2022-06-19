@@ -1,0 +1,38 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+
+{% if request.user.customer.profile_pic.url %}
+    <img src="{{ request.user.customer.profile_pic.url }}" width="320px" style="border-radius:50%">
+{% endif %}
+
+<h1>WARNING</h1>
+
+<h3>You are about to delete user {{ request.user }}</h3>
+
+<h3>Are you sure?</h3><br>
+
+<form action="{% url 'delete_user' username %}" method="POST">
+
+    {% csrf_token %}
+
+    <p>Password<br>
+    <input type="password" name="password" onfocus="this.removeAttribute('readonly');" readonly /></p>
+
+
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+    <br>
+    <h2><a href="{% url 'settings' %}">Cancel</a></h2>
+
+    <input type="submit" name="Confirm" value="Delete">
+</form>
+
+{% endblock %}

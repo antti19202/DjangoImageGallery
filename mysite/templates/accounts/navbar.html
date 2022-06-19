@@ -1,0 +1,31 @@
+<div class ="topnav" id="topnav">
+     
+    <div class="topnav" id="topnav">
+     
+        <a href="{% url 'home' %}"><b>Home</b></a>  
+        <a href="{% url 'user-page' %}"><b>Profile</b></a> 
+        <a href="{% url 'upload' %}"><b>Upload Image</b></a> 
+        <a href="{% url 'create-album' %}"><b>Create Album</b></a> 
+        <a href="{% url 'search' %}"><b>Search</b></a> 
+        <a href="{% url 'logout' %}">Logout</a></span>
+     
+         
+
+
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+
+    </div>
+     
+    <script>
+     
+    function myFunction() {
+      var x = document.getElementById("topnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+    </script>

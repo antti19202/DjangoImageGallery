@@ -1,0 +1,39 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h1>Delete Images</h1>
+
+<h3><a href="{% url 'user-page' %}">Back to Profile</a></h3>
+
+<br>
+
+{% if photos %}
+    <p>Select an image to delete</p>
+{% endif %}
+
+<div id="galleria">
+<figure>
+
+{% for photo in photos %}
+<a href="{% url 'delete' photo.id %}"><img src="{{ photo.image_thumbnail_small.url }}">
+</a>
+
+    {% empty %}
+    {% load static %}
+    <img src="{% static 'images/LooksEmpty.gif' %}">
+    <br>
+    Looks empty! Go and
+    <a href="{% url 'upload' %}"><b>upload an image!</b></a>
+
+{% endfor %}
+
+</figure>
+</div>
+
+{% endblock %}

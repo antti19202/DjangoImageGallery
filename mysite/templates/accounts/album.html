@@ -1,0 +1,34 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h1>{{ albums.title }}</h1>
+
+{% if albums.description %}
+    <p>"{{ albums.description }}"</p>
+{% endif %}
+
+
+<div id="galleria">
+    <figure>
+
+{% for photo in albums.get_photos %}
+    <a href="{% url 'image_large' photo.id %}">
+        <img src="{{ photo.image_thumbnail_small.url }}" />
+    </a>
+
+    {% empty %}
+    <p>Album looks empty, <a href="{% url 'upload' %}">upload something!</a></p>
+    {% load static %}
+    <img src="{% static 'images/LooksEmpty.gif' %}" style="border-radius:10%">
+
+{% endfor %}
+</figure>
+</div>
+
+{% endblock %}

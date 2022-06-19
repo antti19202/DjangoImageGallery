@@ -1,0 +1,22 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h3>Are you sure you want to permanently delete album</h3>
+<h1>{{ album.title }}</h1>
+<h3>and all it's content?</h3><br>
+
+<form action="{% url 'delete_album_confirm' album.id %}" method="POST">
+
+    {% csrf_token %}
+    <h3><a href="{% url 'delete_album' %}">Cancel</a></h3>
+
+    <input type="submit" name="Confirm" value="Delete album">
+</form>
+
+{% endblock %}

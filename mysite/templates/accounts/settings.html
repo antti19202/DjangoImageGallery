@@ -1,0 +1,39 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+<h1>Account Settings</h1>
+
+
+<h3><a href="{% url 'user-page' %}">Back to Profile</a></h3>
+<h3><a href="{% url 'delete_user' user.username %}">Delete User</a></h3>
+
+<img  src="{{ request.user.customer.profile_pic.url }}" width="350px" style="border-radius:50%">
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <br>
+    <div ><p>{{ form.profile_pic }}</p></div>
+
+    <p>{{ form.name.label }}<br>
+    {{ form.name }}</p>
+
+    <p>{{ form.email.label }}<br>
+    {{ form.email }}</p>
+
+    <p>{{ form.description.label }}<br>
+    {{ form.description }}</p>
+
+    <br>
+
+    <input type="submit" value="Update">
+</form>
+
+
+{% endblock %}

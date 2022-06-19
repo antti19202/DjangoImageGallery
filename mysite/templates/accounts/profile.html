@@ -1,0 +1,68 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+{% for utente in users %}
+
+    {% if utente.user %}
+        <h1>{{ utente.user }}</h1>
+    {% endif %}
+
+    {% if utente.profile_pic %}
+        <img src="{{ utente.profile_pic.url }}" width="320px" style="border-radius:50%">
+    {% endif %}
+
+    <br>
+
+    {% if utente.name %}
+        <b> Name: </b>{{ utente.name }}
+    {% endif %}
+
+    <br>
+
+    {% if utente.email %}
+        <b>Email: </b> {{ utente.email }}
+    {% endif %}
+
+    <br>
+
+    {% if utente.description %}
+        <b>Description: </b> {{ utente.description }}
+    {% endif %}
+
+    <br>
+
+    {% if albums %}
+        <h2>Photo albums:</h2>
+        {% for album in albums %}
+            <h3><a href="{% url 'album' album.id %}">{{ album.title }} <br></a></h3>
+            <br>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Jos käyttäjää ei ole olemassa -->
+    {% empty %}
+    {% load static %}
+    <img src="{% static 'images/UserDoesNotExist.gif' %}">
+
+{% endfor %}
+
+<br>
+
+<div id="galleria">
+
+    <figure>
+    {% for photo in photos %}
+    <a href="{% url 'image_large' photo.id %}">
+        <img src="{{ photo.image_thumbnail_small.url }}">
+    </a>
+    {% endfor %}
+    </figure>
+</div>
+
+{% endblock %}

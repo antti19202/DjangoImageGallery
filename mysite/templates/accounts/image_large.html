@@ -1,0 +1,39 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+{% if photo.title %}
+    <h1>{{ photo.title }}</h1>
+{% endif %}
+
+{% if photo.description %}
+    <h4>{{ photo.description }}</h4>
+{% endif %}
+
+{% for tag in photo.tags.all %}
+    <a href="{% url 'tagged' tag.slug %}">{{ tag }}</a> &nbsp;
+{% endfor %}
+<br>
+
+<img src="{{ photo.image_thumbnail_large.url }}"> <br>
+
+<a href="{% url 'image' photo.id %}">Original</a>&nbsp;
+Large&nbsp;
+<a href="{% url 'image_small' photo.id %}">Small</a>
+
+<br><br><br>
+
+{% if photo.user %}
+    Uploaded by: <a href="/{{ photo.user }}/">{{ photo.user }}</a>&nbsp;&nbsp;
+{% endif %}
+
+{% if photo.date_created %}
+    {{ photo.date_created }}
+{% endif %}
+
+{% endblock %}

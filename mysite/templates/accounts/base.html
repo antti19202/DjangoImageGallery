@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <link rel="icon" href="{% static 'images/icon.png' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Img Revolution{% endblock %}</title>
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+
+</head>
+
+<body>
+
+  <div id="headerwrap">
+  <div class="header">{% include 'accounts/navbar.html' %}</div> <!-- Nav bar -->
+  </div>
+  
+  
+  <div class="logo">
+
+  </div>
+
+  <div id="footerpadding">
+    <div class="content">{% block content %}{% endblock %}</div>
+  </div>
+
+  <footer class="footer">Team Karhukopla 2021</div></footer>
+  
+</body>
+</html>

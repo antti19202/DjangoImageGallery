@@ -1,0 +1,75 @@
+<!-- Sivun pohja haetaan base.html tiedostosta -->
+{% extends 'accounts/base.html' %}
+
+<!-- Muutetaan sivun title -->
+{% block title %}Img Revolution{% endblock %}
+
+<!-- Sivun contetti alkaa -->
+{% block content %}
+
+
+
+<h1>{{ request.user }}</h1>
+
+{% if request.user.customer.profile_pic.url %}
+    <img src="{{ request.user.customer.profile_pic.url }}" width="320px" style="border-radius:50%">
+{% endif %}
+
+<br>
+<h3>
+<a href="{% url 'settings' %}">Settings</a><br>
+    <a href="{% url 'delete_image' %}">Delete images</a><br>
+        <a href="{% url 'delete_album' %}">Delete album</a><br>
+</h3>
+<br>
+
+{% if request.user.customer.name %}
+    <b> Name: </b>{{ request.user.customer.name }}
+{% endif %}
+
+<br>
+
+{% if request.user.customer.email %}
+    <b>Email: </b> {{ request.user.customer.email }}
+{% endif %}
+
+<br>
+
+{% if request.user.customer.description %}
+    <b>Description: </b> {{ request.user.customer.description }}
+{% endif %}
+
+{% if albums %}
+<br><br>
+    <h2>Your photo albums:</h2>
+    {% for album in albums %}
+        <h3><a href="{% url 'album' album.id %}">{{ album.title }}</a></h3>
+    {% endfor %}
+{% endif %}
+
+<br>
+
+<div id="galleria">
+
+    <figure>
+    {% for photo in photos %}
+    <a href="{% url 'image_large' photo.id %}">
+        <img src="{{ photo.image_thumbnail_small.url }}">
+    </a>
+    {% endfor %}
+    </figure>
+</div>
+<br><br>
+
+{% for photo in photos %}
+    {% empty %}
+    {% load static %}
+    <img src="{% static 'images/LooksEmpty.gif' %}">
+    <br>
+    Looks empty! Go and
+    <a href="{% url 'upload' %}"><b>upload an image!</b></a>
+
+
+{% endfor %}
+
+{% endblock %}

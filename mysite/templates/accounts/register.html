@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="{% url 'home' %}"><b>Home</b></a> &nbsp;
+        <a href="{% url 'register' %}"><b>Sign Up</b></a>
+    </div>
+
+<div class="logoreg"></div>
+<div class="content">
+
+    <h1>Register</h1>
+
+    <!-- Foorumi alkaa johon täytetään tiedot -->
+    <form method="POST" action="">
+
+        {% csrf_token %}
+        <!-- Username teksti -->
+        <p>{{ form.username.label }}</p>
+        <!-- Username input field -->
+        {{ form.username }}
+        <br><br>
+
+        <p>{{ form.email.label }}</p>
+        {{ form.email }}
+        <br><br>
+
+        <p>{{ form.password1.label }}</p>
+        {{ form.password1 }}
+        <br><br>
+
+        <p>{{ form.password2.label }}</p>
+        {{ form.password2 }}
+        <br><br>
+
+        <!-- Submit buttoni jolla rekisteröidytään sisään -->
+        <input type="submit" name="Create User" Value="Create User">
+    </form>
+
+    <!-- Jos kirjautumisen yhteydessä tulee error, siitä tulee visti sivulle -->
+    {{form.errors}}
+
+    <p>Already have an account?</p><h2><a href="{% url 'login' %}">Login</a></h2>
+</div>
+
+
+<footer class="footer">Team Karhukopla 2021</footer>
+
+
+</body>
